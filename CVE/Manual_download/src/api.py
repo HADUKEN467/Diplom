@@ -11,13 +11,13 @@ async def download_base():
     """
     Скачивает базу данных CVE и сохраняет её в MongoDB
     """
-    if not rep["filename_cve"] or not rep["filename_bdu_xml"]:
+    if not rep["filename_cve"] or not rep["filename_bdu"]:
         return {
             "status": False, 
             "message": "Не указано имя файла."
         }
     clone_result_cve = await clone_cve_in_mongo(rep["filename_cve"])
-    clone_result_bdu = await clone_bdu_xml_in_mongo(rep["filename_bdu_xml"])
+    clone_result_bdu = await clone_bdu_xml_in_mongo(rep["filename_bdu"])
     return clone_result_cve, clone_result_bdu
     
 @router.post("/rep", summary="Установить конфигурацию базы данных", tags=["CVE"])
@@ -26,7 +26,7 @@ def setup_config(repo: Repo_Schema):
     Устанавливает конфигурацию для базы данных CVE
     """
     try:
-        if not repo.filename_bdu_xml.endswith(".xml"):
+        if not repo.filename_bdu.endswith(".xml"):
             return {
                 "status": False,
                 "message": f"Имя файла в поле XML является именем файла недопустимого формата."
@@ -39,7 +39,7 @@ def setup_config(repo: Repo_Schema):
                 "status": False,
                 "message": f"Имя файла в поле СЖАТЫЙ ФАЙЛ является именем файла недопустимого формата."
             }
-        response_update = requests.head(str(repo.update_url), allow_redirects=True, timeout=10)
+        response_update = requests.head(str(repo.update_url_cve), allow_redirects=True, timeout=10)
         if response_update.status_code != 200:
             return {
                 "status": False,
@@ -58,8 +58,9 @@ def setup_config(repo: Repo_Schema):
                 "message": f"Ссылка для скачивания ведёт не на zip-файл. Content-Type: {content_type_download}"
             }
         rep["filename_cve"] = repo.filename_cve
-        rep["filename_bdu_xml"] = repo.filename_bdu_xml
-        rep["update_url"] = repo.update_url.unicode_string()
+        rep["filename_bdu"] = repo.filename_bdu
+        rep["update_url_cve"] = repo.update_url_cve.unicode_string()
+        rep["update_url_bdu"] = repo.update_url_bdu.unicode_string()
         rep["name_base"] = repo.name_base
         
         return {
@@ -67,8 +68,9 @@ def setup_config(repo: Repo_Schema):
             "message": "Конфигурация базы данных обновлена",
             "config": {
                 "filename_cve": rep["filename_cve"],
-                "filename_bdu_xml": rep["filename_bdu_xml"],
-                "update_url": rep["update_url"],
+                "filename_bdu": rep["filename_bdu"],
+                "update_url_cve": rep["update_url_cve"],
+                "update_url_bdu": rep["update_url_bdu"],
                 "name_base": rep["name_base"]
             }
         }

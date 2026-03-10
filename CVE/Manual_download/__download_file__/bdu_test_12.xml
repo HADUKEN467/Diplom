@@ -1,0 +1,367 @@
+<?xml version="1.0" ?>
+<vulnerabilities>
+  <vul>
+    <identifier>BDU:2024-00001</identifier>
+    <name>Уязвимость в Apache Log4j2</name>
+    <description>Тестовая уязвимость #1 для проверки импорта больших файлов</description>
+    <identify_date>2024-01-01</identify_date>
+    <publication_date>2024-01-07</publication_date>
+    <last_upd_date>2024-01-12</last_upd_date>
+    <severity>CRITICAL</severity>
+    <solution>Обновите Apache Log4j2 до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>unavailable</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>Apache Log4j2 2.x</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Windows</os>
+      <os>Linux</os>
+      <os>macOS</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-94</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10002</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+  <vul>
+    <identifier>BDU:2024-00002</identifier>
+    <name>Уязвимость в Microsoft Exchange Server</name>
+    <description>Тестовая уязвимость #2 для проверки импорта больших файлов</description>
+    <identify_date>2024-02-02</identify_date>
+    <publication_date>2024-02-08</publication_date>
+    <last_upd_date>2024-02-13</last_upd_date>
+    <severity>HIGH</severity>
+    <solution>Обновите Microsoft Exchange Server до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>available</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>Microsoft Exchange Server 2016-2019</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Windows</os>
+      <os>Linux</os>
+      <os>macOS</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-269</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10003</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+  <vul>
+    <identifier>BDU:2024-00003</identifier>
+    <name>Уязвимость в Linux Kernel</name>
+    <description>Тестовая уязвимость #3 для проверки импорта больших файлов</description>
+    <identify_date>2024-03-03</identify_date>
+    <publication_date>2024-03-09</publication_date>
+    <last_upd_date>2024-03-14</last_upd_date>
+    <severity>HIGH</severity>
+    <solution>Обновите Linux Kernel до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>unavailable</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>Linux Kernel 5.10-6.1</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Linux</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-120</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10004</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+  <vul>
+    <identifier>BDU:2024-00004</identifier>
+    <name>Уязвимость в Google Chrome</name>
+    <description>Тестовая уязвимость #4 для проверки импорта больших файлов</description>
+    <identify_date>2024-04-04</identify_date>
+    <publication_date>2024-04-10</publication_date>
+    <last_upd_date>2024-04-15</last_upd_date>
+    <severity>HIGH</severity>
+    <solution>Обновите Google Chrome до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>available</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>Google Chrome 119-121</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Windows</os>
+      <os>Linux</os>
+      <os>macOS</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-416</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10005</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+  <vul>
+    <identifier>BDU:2024-00005</identifier>
+    <name>Уязвимость в PostgreSQL</name>
+    <description>Тестовая уязвимость #5 для проверки импорта больших файлов</description>
+    <identify_date>2024-05-05</identify_date>
+    <publication_date>2024-05-11</publication_date>
+    <last_upd_date>2024-05-16</last_upd_date>
+    <severity>MEDIUM</severity>
+    <solution>Обновите PostgreSQL до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>unavailable</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>PostgreSQL 14-15</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Windows</os>
+      <os>Linux</os>
+      <os>macOS</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-89</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10006</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+  <vul>
+    <identifier>BDU:2024-00006</identifier>
+    <name>Уязвимость в OpenSSL</name>
+    <description>Тестовая уязвимость #6 для проверки импорта больших файлов</description>
+    <identify_date>2024-06-06</identify_date>
+    <publication_date>2024-06-12</publication_date>
+    <last_upd_date>2024-06-17</last_upd_date>
+    <severity>CRITICAL</severity>
+    <solution>Обновите OpenSSL до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>available</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>OpenSSL 1.1.1-3.0</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Linux</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-120</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10007</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+  <vul>
+    <identifier>BDU:2024-00007</identifier>
+    <name>Уязвимость в Kubernetes</name>
+    <description>Тестовая уязвимость #7 для проверки импорта больших файлов</description>
+    <identify_date>2024-07-07</identify_date>
+    <publication_date>2024-07-13</publication_date>
+    <last_upd_date>2024-07-18</last_upd_date>
+    <severity>HIGH</severity>
+    <solution>Обновите Kubernetes до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>unavailable</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>Kubernetes 1.27-1.28</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Windows</os>
+      <os>Linux</os>
+      <os>macOS</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-269</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10008</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+  <vul>
+    <identifier>BDU:2024-00008</identifier>
+    <name>Уязвимость в Python</name>
+    <description>Тестовая уязвимость #8 для проверки импорта больших файлов</description>
+    <identify_date>2024-08-08</identify_date>
+    <publication_date>2024-08-14</publication_date>
+    <last_upd_date>2024-08-19</last_upd_date>
+    <severity>MEDIUM</severity>
+    <solution>Обновите Python до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>available</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>Python 3.8-3.11</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Windows</os>
+      <os>Linux</os>
+      <os>macOS</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-77</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10001</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+  <vul>
+    <identifier>BDU:2024-00009</identifier>
+    <name>Уязвимость в MySQL</name>
+    <description>Тестовая уязвимость #9 для проверки импорта больших файлов</description>
+    <identify_date>2024-09-09</identify_date>
+    <publication_date>2024-09-15</publication_date>
+    <last_upd_date>2024-09-20</last_upd_date>
+    <severity>HIGH</severity>
+    <solution>Обновите MySQL до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>unavailable</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>MySQL 8.0</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Linux</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-287</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10002</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+  <vul>
+    <identifier>BDU:2024-00010</identifier>
+    <name>Уязвимость в Nginx</name>
+    <description>Тестовая уязвимость #10 для проверки импорта больших файлов</description>
+    <identify_date>2024-10-10</identify_date>
+    <publication_date>2024-10-16</publication_date>
+    <last_upd_date>2024-10-21</last_upd_date>
+    <severity>HIGH</severity>
+    <solution>Обновите Nginx до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>available</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>Nginx 1.22-1.23</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Windows</os>
+      <os>Linux</os>
+      <os>macOS</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-120</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10003</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+  <vul>
+    <identifier>BDU:2024-00011</identifier>
+    <name>Уязвимость в Redis</name>
+    <description>Тестовая уязвимость #11 для проверки импорта больших файлов</description>
+    <identify_date>2024-11-11</identify_date>
+    <publication_date>2024-11-17</publication_date>
+    <last_upd_date>2024-11-22</last_upd_date>
+    <severity>CRITICAL</severity>
+    <solution>Обновите Redis до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>unavailable</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>Redis 7.0-7.2</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Windows</os>
+      <os>Linux</os>
+      <os>macOS</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-94</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10004</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+  <vul>
+    <identifier>BDU:2024-00012</identifier>
+    <name>Уязвимость в Docker</name>
+    <description>Тестовая уязвимость #12 для проверки импорта больших файлов</description>
+    <identify_date>2024-12-12</identify_date>
+    <publication_date>2024-12-18</publication_date>
+    <last_upd_date>2024-12-23</last_upd_date>
+    <severity>HIGH</severity>
+    <solution>Обновите Docker до актуальной версии</solution>
+    <vul_status>active</vul_status>
+    <exploit_status>available</exploit_status>
+    <fix_status>available</fix_status>
+    <vulnerable_software>
+      <soft>Docker 20.10-24.0</soft>
+    </vulnerable_software>
+    <environment>
+      <os>Linux</os>
+    </environment>
+    <cwes>
+      <cwe>CWE-269</cwe>
+    </cwes>
+    <identifiers>
+      <identifier>CVE-2024-10005</identifier>
+    </identifiers>
+    <cvss>
+      <vector>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</vector>
+    </cvss>
+    <sources>FSTEC NVD MITRE</sources>
+  </vul>
+</vulnerabilities>

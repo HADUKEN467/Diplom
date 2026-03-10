@@ -20,6 +20,7 @@ atributs_simple = [
             "solution", "vul_status", "exploit_status", "fix_status", "other", "vul_incident", "vul_class", "vul_state",
             "vul_elimination"
 ]
+
 atributs_list = {
             "vulnerable_software": "soft",
             "environment": "os",
@@ -32,7 +33,7 @@ async def clone_bdu_xml_in_mongo(filename_bdu_xml: str):
     len_document = 20 # стандартная длина файла
     UPLOAD_DIR = Path("/app/__download_file__")
     path = UPLOAD_DIR / filename_bdu_xml
-    tree = etree.parse(path)
+    tree = etree.parse(str(path))
     root = tree.getroot()
     vulnerabilities = []
     vul_all = root.findall("vul")
@@ -40,19 +41,17 @@ async def clone_bdu_xml_in_mongo(filename_bdu_xml: str):
         doc = {}
         for i in atributs_simple:
             atr_simple_none(doc, i, vul)
-        true_list = []
         for key, i in atributs_list.items():
             elements = vul.findall(f"{key}/{i}")
+            true_list = []
             for elem in elements:
                 if elem.text and elem.text.strip():
                     true_list.append(elem.text.strip())
             if true_list:
                 if key == "identifiers":
                     doc["identifiers_CVE"] = true_list
-                    true_list = []
                     continue
                 doc[key] = true_list
-                true_list = []
         vector = vul.findtext("cvss/vector")
         if vector and vector.strip():
             doc["cvss"] = vector
@@ -61,7 +60,7 @@ async def clone_bdu_xml_in_mongo(filename_bdu_xml: str):
             doc["sources"] = sources.split()
         doc["imported_at"] = datetime.now()
         vulnerabilities.append(doc)
-        if len_document == 20:
+        if len_document == len(vulnerabilities):
             excp_change = False
 
     collection_bdu = base["BDU"]
@@ -90,7 +89,7 @@ async def clone_bdu_xml_in_mongo(filename_bdu_xml: str):
     if total_files == 0:
         return {
             "status": False,
-            "message": "JSON-файлов с данными о CVE не обнаружено."
+            "message": "Файлов с данными о БДУ не обнаружено."
         }
     if excp_change:
         return {
