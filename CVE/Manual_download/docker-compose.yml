@@ -1,0 +1,24 @@
+name: "manual-downloader"
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URL=mongodb://host.docker.internal:27017/
+    restart: unless-stopped
+    volumes:
+      - ../database/mongodb.py:/app/mongodb.py
+      - ../database/schema.py:/app/schema.py
+      - ./__download_file__:/app/__download_file__
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://host.docker.internal:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: "admin"
+      ME_CONFIG_BASICAUTH_PASSWORD: "123"
+    restart: unless-stopped
