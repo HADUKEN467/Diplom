@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y git
 
-RUN pip install fastapi uvicorn pymongo pydantic requests lxml
+RUN pip install fastapi uvicorn motor pydantic requests lxml redis hiredis
 
 COPY . .
 

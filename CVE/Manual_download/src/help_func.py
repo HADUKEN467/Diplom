@@ -2,9 +2,27 @@ import tempfile
 from pathlib import Path
 import json
 import zipfile
-from mongodb import base
+from motor.motor_asyncio import AsyncIOMotorClient
+import redis.asyncio as redis
 from lxml import etree
 from datetime import datetime
+
+redis_client = redis.Redis(
+    host='my-redis',
+    port=6379,
+    decode_responses=True,
+    socket_connect_timeout=5
+)
+
+
+async def init_mongo():
+    """Инициализация MongoDB с данными из Redis"""
+    await redis_client.ping()
+    mongodb_url = await redis_client.hget("my_config", "mongodb_url")
+    name_base = await redis_client.hget("my_config", "name_base")
+    mongo_client = AsyncIOMotorClient(mongodb_url)
+    base = mongo_client[name_base]
+    return base
 
 def atr_simple_none(doc: dict, text: str, vul):
     atr = vul.findtext(text)
@@ -30,7 +48,7 @@ atributs_list = {
 
 async def clone_bdu_xml_in_mongo(filename_bdu_xml: str):
     excp_change = True
-    len_document = 20 # стандартная длина файла
+    len_document = 20
     UPLOAD_DIR = Path("/app/__download_file__")
     path = UPLOAD_DIR / filename_bdu_xml
     tree = etree.parse(str(path))
@@ -63,6 +81,7 @@ async def clone_bdu_xml_in_mongo(filename_bdu_xml: str):
         if len_document == len(vulnerabilities):
             excp_change = False
 
+    base = await init_mongo()
     collection_bdu = base["BDU"]
     total_files = 0
     successful_creates = 0
@@ -73,7 +92,7 @@ async def clone_bdu_xml_in_mongo(filename_bdu_xml: str):
             if "_id" not in elem:
                 errors += 1
                 continue
-            result = collection_bdu.update_one(
+            result = await collection_bdu.update_one(
                 {"_id": elem["_id"]},
                 {"$set": elem},
                 upsert=True
@@ -122,6 +141,8 @@ async def clone_cve_in_mongo(filename: str):
         extract_path = temp_path / "extracted"
         with zipfile.ZipFile(zip_path, "r") as zf:
             zf.extractall(extract_path)
+
+        base = await init_mongo()
         collection_cve = base["CVE"]
         total_files = 0
         successful_creates = 0
@@ -137,7 +158,7 @@ async def clone_cve_in_mongo(filename: str):
                     if not cve_id:
                         errors += 1
                         continue
-                    result = collection_cve.update_one(
+                    result = await collection_cve.update_one(
                         {"cveMetadata.cveId": cve_id},
                         {"$set": json_data},
                         upsert=True

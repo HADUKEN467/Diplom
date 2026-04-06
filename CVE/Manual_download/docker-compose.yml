@@ -5,13 +5,11 @@ services:
     build: .
     ports:
       - "8000:8000"
-    environment:
-      - MONGODB_URL=mongodb://host.docker.internal:27017/
     restart: unless-stopped
     volumes:
-      - ../database/mongodb.py:/app/mongodb.py
-      - ../database/schema.py:/app/schema.py
       - ./__download_file__:/app/__download_file__
+    networks:
+      - redis-mini-storage-network
 
   mongo-express:
     image: mongo-express
@@ -22,3 +20,9 @@ services:
       ME_CONFIG_BASICAUTH_USERNAME: "admin"
       ME_CONFIG_BASICAUTH_PASSWORD: "123"
     restart: unless-stopped
+    networks:
+      - redis-mini-storage-network
+
+networks:
+  redis-mini-storage-network:
+    external: true

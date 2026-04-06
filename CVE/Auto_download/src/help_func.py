@@ -4,8 +4,26 @@ import requests
 import json
 import zipfile
 from lxml import etree
-from mongodb import base
+from motor.motor_asyncio import AsyncIOMotorClient
+import redis.asyncio as redis
 from datetime import datetime
+
+redis_client = redis.Redis(
+    host='my-redis',
+    port=6379,
+    decode_responses=True,
+    socket_connect_timeout=5
+)
+
+
+async def init_mongo():
+    """Инициализация MongoDB с данными из Redis"""
+    await redis_client.ping()
+    mongodb_url = await redis_client.hget("my_config", "mongodb_url")
+    name_base = await redis_client.hget("my_config", "name_base")
+    mongo_client = AsyncIOMotorClient(mongodb_url)
+    base = mongo_client[name_base]
+    return base
 
 def atr_simple_none(doc: dict, text: str, vul):
     atr = vul.findtext(text)
@@ -48,6 +66,8 @@ async def update_cve_in_mongo(update_url: str):
         extract_path = temp_path / "extracted"
         with zipfile.ZipFile(zip_path, "r") as zf:
             zf.extractall(extract_path)
+
+        base = await init_mongo()
         collection_cve = base["CVE"]
         successful_creates = 0
         successful_updates = 0
@@ -62,7 +82,7 @@ async def update_cve_in_mongo(update_url: str):
                         print(f"Ошибка: CVE ID не найден в файле {file_path.name}")
                         errors += 1
                         continue
-                    result = collection_cve.update_one(
+                    result = await collection_cve.update_one(
                         {"cveMetadata.cveId": cve_id},
                         {"$set": json_data},
                         upsert=True
@@ -107,7 +127,6 @@ async def update_bdu_in_mongo(update_url: str):
                 zf.extractall(extract_path)
             xml_files = next(extract_path.rglob("*.xml"), None)
         else:
-            # Обработка прямого XML
             xml_files = downloaded_path
         if not xml_files:
             return {"status": False, "message": "XML файлов не найдено"}
@@ -140,6 +159,8 @@ async def update_bdu_in_mongo(update_url: str):
             vulnerabilities.append(doc)
             if len_document == len(vulnerabilities):
                 excp_change = False
+
+        base = await init_mongo()
         collection_bdu = base["BDU"]
         total_files = 0
         successful_creates = 0
@@ -150,7 +171,7 @@ async def update_bdu_in_mongo(update_url: str):
                 if "_id" not in elem:
                     errors += 1
                     continue
-                result = collection_bdu.update_one(
+                result = await collection_bdu.update_one(
                     {"_id": elem["_id"]},
                     {"$set": elem},
                     upsert=True
